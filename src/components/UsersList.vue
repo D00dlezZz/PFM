@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="users__list">
-      <Users
+      <User
         v-for="user of LocalStorage" :key="user"
         v-bind:user="user"
         v-on:delete-user="deleteUser"
@@ -12,16 +12,16 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import Users from "@/components/Users.vue";
+import User from "@/components/User.vue";
 
 export default defineComponent({
   props: ["LocalStorage"],
   components: {
-    Users,
+    User,
   },
   methods: {
     deleteUser(id:number) {
-  this.$emit('delete-user', id)
+      this.$emit('delete-user', id)
   }
 }
 });
