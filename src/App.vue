@@ -24,6 +24,11 @@ export default defineComponent({
     const result = await response;
     this.LocalStorage = result.data;
   },
+  methods: {
+    deleteUser(id:number) {
+      this.LocalStorage = this.LocalStorage.filter(el => el[id] !== id)
+    }
+  }
 });
 </script>
 

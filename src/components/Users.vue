@@ -6,7 +6,7 @@
       <div class="info"><p>Surename: {{ user.last_name }}</p><button class="red"></button></div>
       <div class="info"><p>Email: {{ user.email }}</p><button class="red"></button></div>
     </div>
-    <button class="user__delete">&times;</button>
+    <button class="user__delete" v-on:click="$emit('delete-user', user.id)">&times;</button>
   </div>
 </template>
 

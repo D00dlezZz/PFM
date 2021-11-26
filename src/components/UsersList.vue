@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="users__list">
-      <Users v-for="user of LocalStorage" :key="user" v-bind:user="user" />
+      <Users
+        v-for="user of LocalStorage" :key="user"
+        v-bind:user="user"
+        v-on:delete-user="deleteUser"
+        @delete-user="delete-user"
+      />
     </div>
   </div>
 </template>
@@ -15,6 +20,11 @@ export default defineComponent({
   components: {
     Users,
   },
+  methods: {
+    deleteUser(id:number) {
+  this.$emit('delete-user', id)
+  }
+}
 });
 </script>
 
@@ -23,5 +33,7 @@ export default defineComponent({
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 </style>
