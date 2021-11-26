@@ -1,14 +1,14 @@
 <template>
-  <div> 
-    <h1>Пользователи</h1>
+  <div>
+    <h1>Users</h1>
     <UsersList v-bind:LocalStorage="LocalStorage" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import UsersList from '@/components/UsersList.vue';
-import {response} from '@/getUsers' 
+import UsersList from "@/components/UsersList.vue";
+import { response } from "@/getUsers";
 
 export default defineComponent({
   name: "App",
@@ -17,20 +17,20 @@ export default defineComponent({
   },
   data() {
     return {
-      LocalStorage: []
+      LocalStorage: [],
     };
   },
   async mounted() {
     const result = await response;
     this.LocalStorage = result.data;
-  }
+  },
 });
 </script>
 
 <style>
 #app {
   box-sizing: border-box;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Avenir,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
