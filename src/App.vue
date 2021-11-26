@@ -23,12 +23,13 @@ export default defineComponent({
       LocalStorage: [],
     };
   },
-  mounted() {
-   this.addUsers()
+  async mounted() {
+  await this.addUsers()
   },
   methods: {
-    addUsers() {
-      getUsers().then((res) => console.log(res));
+    async addUsers() {
+      let value = await getUsers().then((res) => res);
+      this.LocalStorage = value.data
     }
   }
 });
