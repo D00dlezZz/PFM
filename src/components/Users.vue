@@ -27,14 +27,17 @@ export default defineComponent({
   padding: 1em;
   width: 35em;
   height: 10em;
-  border: 1px solid;
-  border-radius: 10px;
   margin: 10px;
   align-items: center;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: none;
 }
 .user__avatar img {
-  width: 100%;
-  height: 100%;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
 }
 .user__info {
   display: flex;
@@ -58,12 +61,20 @@ p {
   top: 3px;
   right: 3px;
   border-radius: 50%;
+  width: 25px;
+  height: 25px;
   border: none;
+  background-color: #ff8484;
 }
 
 .red {
-  background-image: url("../img/icons8-редактировать.svg") 100%;
-  /*width: 10px;*/
-  /*height: 20px;*/
+  cursor: pointer;
+  background-image: url("../img/icons8-редактировать.svg");
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: white;
+  margin-left: 10px;
 }
+
 </style>
