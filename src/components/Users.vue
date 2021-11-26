@@ -58,8 +58,8 @@ p {
 .user__delete {
   cursor: pointer;
   position: absolute;
-  top: 3px;
-  right: 3px;
+  top: 5px;
+  right: 5px;
   border-radius: 50%;
   width: 25px;
   height: 25px;

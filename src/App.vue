@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Users</h1>
-    <UsersList v-bind:LocalStorage="LocalStorage" />
+    <UsersList
+      v-bind:LocalStorage="LocalStorage"
+      @delete-user="deleteUser"
+    />
   </div>
 </template>
 
@@ -26,7 +29,7 @@ export default defineComponent({
   },
   methods: {
     deleteUser(id:number) {
-      this.LocalStorage = this.LocalStorage.filter(el => el[id] !== id)
+      this.LocalStorage = this.LocalStorage.filter(user => user.id !== id)
     }
   }
 });

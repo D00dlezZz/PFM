@@ -5,7 +5,6 @@
         v-for="user of LocalStorage" :key="user"
         v-bind:user="user"
         v-on:delete-user="deleteUser"
-        @delete-user="delete-user"
       />
     </div>
   </div>
