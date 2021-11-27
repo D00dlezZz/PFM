@@ -41,11 +41,13 @@ export default defineComponent({
       event.target.closest(".user").querySelector(".user__info").style.display = "flex"
       event.target.closest(".user__container").querySelector(".user").style.width = "35em"
       event.target.closest(".user").querySelector(".closeBtn").style.display = "flex"
+      event.target.closest(".user").querySelector(".about").style.display = "none"
     },
     closeInfo(event: any ) {
       event.target.closest(".user").querySelector(".user__info").style.display = "none"
       event.target.closest(".user__container").querySelector(".user").style.width = "8em"
       event.target.closest(".user").querySelector(".closeBtn").style.display = "none"
+      event.target.closest(".user").querySelector(".about").style.display = "flex"
     },
   }
 });
