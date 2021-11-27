@@ -1,9 +1,10 @@
 <template>
+  <div class="user__container"></div>
   <div class="user" :id="`${user.id}`">
     <div class="main">
       <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div>
       <div class="user__id"><p>User {{ user.id }}</p></div>
-      <p @click="showInfo" class="about">подрообнее</p>
+      <p @click="showInfo" class="about">подробнее</p>
     </div>
     <div class="user__info">
       <button class="editor" @click="toggleEditButton"></button>
@@ -34,14 +35,9 @@ export default defineComponent({
         }
       })
     },
-    showInfo( ) {
-      // const selectedUser: any = event.target.
-      document.querySelectorAll(".user__info").forEach((element:any) => {
-          element.style.display = "flex"
-      });
-      document.querySelectorAll(".user").forEach((element:any) => {
-        element.style.width = "35em"
-      });
+    showInfo(event: any ) {
+      event.target.closest(".user").querySelector(".user__info").style.display = "flex"
+     .querySelector(".user").style.display = "35em"
     }
   }
 });
