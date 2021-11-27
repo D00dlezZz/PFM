@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Users</h1>
+    <h1>Пользователи:</h1>
     <UsersList
       v-bind:LocalStorage="LocalStorage"
       @delete-user="deleteUser"
@@ -46,7 +46,6 @@ export default defineComponent({
   font-family: Avenir,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>

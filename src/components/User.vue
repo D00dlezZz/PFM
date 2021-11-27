@@ -1,11 +1,15 @@
 <template>
   <div class="user" :id="`${user.id}`">
-    <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div> 
+    <div class="main">
+      <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div>
+      <div class="user__id"><p>User {{ user.id }}</p></div>
+      <p @click="showInfo" class="about">подрообнее</p>
+    </div>
     <div class="user__info">
       <button class="editor" @click="toggleEditButton"></button>
-      <div class="info"><p>Name:</p><input name="name" type="text" :value="user.first_name" disabled="disabled"/></div>
-      <div class="info"><p>Surename:</p><input name="surname" type="text" :value="user.last_name" disabled="disabled"/></div>
-      <div class="info"><p>Email:</p><input name="email" type="email" :value="user.email" disabled="disabled" class="email"/></div>
+      <div class="info"><p>Name:</p><input type="text" :value="user.first_name" disabled="disabled"/></div>
+      <div class="info"><p>Surename:</p><input type="text" :value="user.last_name" disabled="disabled"/></div>
+      <div class="info"><p>Email:</p><input type="email" :value="user.email" disabled="disabled" class="email"/></div>
     </div>
     <button class="user__delete" @click="$emit('delete-user', user.id)">&times;</button>
   </div>
@@ -21,8 +25,7 @@ export default defineComponent({
   methods: {
     toggleEditButton(event: any) {
       const currentUser: any = event.target.closest(".user")
-      const inputs: any = currentUser.querySelectorAll("input")
-      inputs.forEach((input: any) => {
+      currentUser.querySelectorAll("input").forEach((input: any) => {
         input.disabled = !input.disabled
         if (input.disabled === true) {
           input.style.border = 'none'
@@ -30,6 +33,15 @@ export default defineComponent({
           input.style.border = '0.5px solid #ff8484'
         }
       })
+    },
+    showInfo( ) {
+      // const selectedUser: any = event.target.
+      document.querySelectorAll(".user__info").forEach((element:any) => {
+          element.style.display = "flex"
+      });
+      document.querySelectorAll(".user").forEach((element:any) => {
+        element.style.width = "35em"
+      });
     }
   }
 });
@@ -37,11 +49,21 @@ export default defineComponent({
 
 <style scoped>
 
+.user__id {
+  display: flex;
+  justify-content: center;
+  font-size: 1.3em;
+}
+.about {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
 .user {
   position: relative;
   display: flex;
   padding: 1em;
-  width: 35em;
+  width: 120px;
   height: 10em;
   margin: 10px;
   align-items: center;
@@ -65,7 +87,7 @@ export default defineComponent({
   border-radius: 50%;
 }
 .user__info {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-start;
   margin-left: 1em;

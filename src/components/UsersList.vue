@@ -29,9 +29,6 @@ export default defineComponent({
 
 <style scoped>
 .users__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
 }
