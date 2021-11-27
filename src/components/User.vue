@@ -1,18 +1,19 @@
 <template>
-  <div class="user__container"></div>
-  <div class="user" :id="`${user.id}`">
-    <div class="main">
-      <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div>
-      <div class="user__id"><p>User {{ user.id }}</p></div>
-      <p @click="showInfo" class="about">подробнее</p>
+  <div class="user__container">
+    <div class="user" :id="`${user.id}`">
+      <div class="main">
+        <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div>
+        <div class="user__id"><p>User {{ user.id }}</p></div>
+        <p @click="showInfo" class="about">подробнее</p>
+      </div>
+      <div class="user__info">
+        <button class="editor" @click="toggleEditButton"></button>
+        <div class="info"><p>Name:</p><input type="text" :value="user.first_name" disabled="disabled"/></div>
+        <div class="info"><p>Surename:</p><input type="text" :value="user.last_name" disabled="disabled"/></div>
+        <div class="info"><p>Email:</p><input type="email" :value="user.email" disabled="disabled" class="email"/></div>
+      </div>
+      <button class="user__delete" @click="$emit('delete-user', user.id)">&times;</button>
     </div>
-    <div class="user__info">
-      <button class="editor" @click="toggleEditButton"></button>
-      <div class="info"><p>Name:</p><input type="text" :value="user.first_name" disabled="disabled"/></div>
-      <div class="info"><p>Surename:</p><input type="text" :value="user.last_name" disabled="disabled"/></div>
-      <div class="info"><p>Email:</p><input type="email" :value="user.email" disabled="disabled" class="email"/></div>
-    </div>
-    <button class="user__delete" @click="$emit('delete-user', user.id)">&times;</button>
   </div>
 </template>
 
@@ -36,8 +37,9 @@ export default defineComponent({
       })
     },
     showInfo(event: any ) {
+      console.log(event.target.closest(".user__container").querySelector(".user"))
       event.target.closest(".user").querySelector(".user__info").style.display = "flex"
-     .querySelector(".user").style.display = "35em"
+      event.target.closest(".user__container").querySelector(".user").style.width = "35em"
     }
   }
 });
