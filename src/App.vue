@@ -2,7 +2,7 @@
   <div>
     <h1>Пользователи:</h1>
     <UsersList
-      v-bind:LocalStorage="LocalStorage"
+      v-bind:LocalStorage="users"
       @delete-user="deleteUser"
     />
   </div>
@@ -19,21 +19,23 @@ export default defineComponent({
   components: {
     UsersList,
   },
-  data() {
-    return {
-      LocalStorage: [],
-    };
-  },
+
   async mounted() {
-    await this.addUsers()
+    await getUsers()
+    .then((response: any) => {
+      localStorage.setItem("users", JSON.stringify(response.data));
+    })
+  },
+  computed: {
+    users(): any {
+      let users: any =  JSON.parse(localStorage.getItem("users")!);
+      return users;
+    }
   },
   methods: {
-    async addUsers() {
-      let value: any = await getUsers().then((res) => res);
-      this.LocalStorage = value.data
-    },
     deleteUser(id: number) {
-      this.LocalStorage = this.LocalStorage.filter((user: any) => user.id !== id);
+      console.log(this.users)
+      this.users.filter((user: any) => user.id !== id);
     }
   }
 });

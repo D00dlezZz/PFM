@@ -5,3 +5,17 @@ export default class User {
   last_name!: string;
   avatar!: string;
 }
+
+// data() {
+//   return {
+//     LocalStorage: [],
+//   };
+// },
+// computed: {
+//   localStorage(): any {
+//     return this.LocalStorage
+//   }
+// },
+// async mounted() {
+//   await this.addUsers()
+// },
