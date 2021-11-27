@@ -2,11 +2,12 @@
   <div class="user">
     <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div> 
     <div class="user__info">
-      <div class="info"><p>Name: {{ user.first_name }}</p><button class="red"></button></div>
-      <div class="info"><p>Surename: {{ user.last_name }}</p><button class="red"></button></div>
-      <div class="info"><p>Email: {{ user.email }}</p><button class="red"></button></div>
+      <button class="red" @click="toggleEditButton"></button>
+      <div class="info"><p>Name:</p><input name="name" type="text" :value="user.first_name" disabled="disabled"/></div>
+      <div class="info"><p>Surename:</p><input name="surname" type="text" :value="user.last_name" disabled="disabled"/></div>
+      <div class="info"><p>Email:</p><input name="email" type="email" :value="user.email" disabled="disabled"/></div>
     </div>
-    <button class="user__delete" v-on:click="$emit('delete-user', user.id)">&times;</button>
+    <button class="user__delete" @click="$emit('delete-user', user.id)">&times;</button>
   </div>
 </template>
 
@@ -17,6 +18,16 @@ export default defineComponent({
   props: {
     user: { type: Object },
   },
+  methods: {
+    toggleEditButton(event: any) {
+      const currentUser: any = event.target.closest(".user")
+      const inputs: any = currentUser.querySelectorAll("input")
+      inputs.forEach((input: any) => {
+         input.disabled = !input.disabled
+      })
+      console.log(currentUser)
+    }
+  }
 });
 </script>
 
@@ -34,6 +45,14 @@ export default defineComponent({
   border-radius: 10px;
   border: none;
 }
+
+.user:hover .user__delete{
+ opacity: 1;
+  pointer-events: unset;
+  transition: opacity 0.5s;
+}
+
+
 .user__avatar img {
   height: 120px;
   width: 120px;
@@ -65,16 +84,38 @@ p {
   height: 25px;
   border: none;
   background-color: #ff8484;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
 }
 
 .red {
+  position: absolute;
+  top: 25%;
+  right: 20%;
   cursor: pointer;
   background-image: url("../img/icons8-редактировать.svg");
   width: 25px;
   height: 25px;
   border: none;
   background-color: white;
-  margin-left: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
 }
+
+.user:hover .red{
+  opacity: 1;
+  pointer-events: unset;
+  transition: opacity 0.5s;
+}
+input {
+  border: none;
+  font-size: 1em;
+  font-weight: initial;
+  color: #2c3e50;
+  background-color: white;
+}
+
 
 </style>

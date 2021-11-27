@@ -13,6 +13,7 @@ import { defineComponent } from "vue";
 import UsersList from "@/components/UsersList.vue";
 import { getUsers } from "@/getUsers";
 
+
 export default defineComponent({
   name: "App",
   components: {
@@ -24,12 +25,15 @@ export default defineComponent({
     };
   },
   async mounted() {
-  await this.addUsers()
+    await this.addUsers()
   },
   methods: {
     async addUsers() {
-      let value = await getUsers().then((res) => res);
+      let value: any = await getUsers().then((res) => res);
       this.LocalStorage = value.data
+    },
+    deleteUser(id: number) {
+      this.LocalStorage = this.LocalStorage.filter((user: any) => user.id !== id);
     }
   }
 });
