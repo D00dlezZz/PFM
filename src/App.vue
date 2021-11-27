@@ -42,6 +42,7 @@ export default defineComponent({
 <style>
 #app {
   box-sizing: border-box;
+  padding: 10px 90px;
   font-family: Avenir,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
