@@ -20,7 +20,6 @@ export default defineComponent({
   },
   methods: {
     toggleEditButton(event: any) {
-      console.log(this.user)
       const currentUser: any = event.target.closest(".user")
       const inputs: any = currentUser.querySelectorAll("input")
       inputs.forEach((input: any) => {
@@ -50,6 +49,7 @@ export default defineComponent({
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   border: none;
+  animation: animShow 0.8s;
 }
 
 .user:hover .user__delete{
@@ -128,5 +128,14 @@ input {
 
 .email {
   width: 300px;
+}
+
+@keyframes animShow {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 </style>
