@@ -2,18 +2,16 @@
   <div class="user__container">
     <div class="user" :id="`${user.id}`">
       <div class="main">
-        <div class="user__avatar"><img :src="`${user.avatar}`" alt=""></div>
-        <div class="user__id"><p>User {{ user.id }}</p></div>
-        <p @click="showInfo" class="about">подробнее</p>
+        <button
+          class="deleteBtn"
+          @click="$emit('delete-user', user.id)"
+        ></button>
+        <div class="user__avatar"><img :src="`${user.avatar}`" alt="" /></div>
+        <div class="user__id">
+          <p>User {{ user.id }}</p>
+        </div>
+        <p @click="$emit('select-user', user.id)" class="about">подробнее</p>
       </div>
-      <div class="user__info">
-        <button class="editor" @click="toggleEditButton"></button>
-        <div class="info"><p>Name:</p><input type="text" :value="user.first_name" disabled="disabled"/></div>
-        <div class="info"><p>Surename:</p><input type="text" :value="user.last_name" disabled="disabled"/></div>
-        <div class="info"><p>Email:</p><input type="email" :value="user.email" disabled="disabled" class="email"/></div>
-        <button class="closeBtn" @click="closeInfo">Закрыть</button>
-      </div>
-      <button class="deleteBtn" @click="$emit('delete-user', user.id)"></button>
     </div>
   </div>
 </template>
@@ -26,36 +24,22 @@ export default defineComponent({
     user: { type: Object },
   },
   methods: {
-    toggleEditButton(event: any) {
-      const currentUser: any = event.target.closest(".user")
-      currentUser.querySelectorAll("input").forEach((input: any) => {
-        input.disabled = !input.disabled
-        if (input.disabled === true) {
-          input.style.border = 'none'
-        }else {
-          input.style.border = '0.5px solid #ff8484'
-        }
-      })
-    },
-    showInfo(event: any ) {
-      event.target.closest(".user").querySelector(".user__info").style.display = "flex"
-      event.target.closest(".user__container").querySelector(".user").classList.add("absolute")
-      event.target.closest(".user").querySelector(".closeBtn").style.display = "flex"
-      event.target.closest(".user").querySelector(".about").style.display = "none"
-
-    },
-    closeInfo(event: any ) {
-      event.target.closest(".user").querySelector(".user__info").style.display = "none"
-      event.target.closest(".user__container").querySelector(".user").classList.remove("absolute")
-      event.target.closest(".user").querySelector(".closeBtn").style.display = "none"
-      event.target.closest(".user").querySelector(".about").style.display = "flex"
-    },
-  }
+    // toggleEditButton(event: any) {
+    //   const currentUser: any = event.target.closest(".user");
+    //   currentUser.querySelectorAll("input").forEach((input: any) => {
+    //     input.disabled = !input.disabled;
+    //     if (input.disabled === true) {
+    //       input.style.border = "none";
+    //     } else {
+    //       input.style.border = "0.5px solid #ff8484";
+    //     }
+    //   });
+    // },
+  },
 });
 </script>
 
 <style scoped>
-
 .user__id {
   display: flex;
   justify-content: center;
@@ -82,8 +66,8 @@ export default defineComponent({
   animation: animShow 1s;
 }
 
-.user:hover .closeBtn{
- opacity: 1;
+.user:hover .closeBtn {
+  opacity: 1;
   pointer-events: unset;
   transition: opacity 0.5s;
 }
@@ -95,7 +79,7 @@ export default defineComponent({
   right: 10px;
   background-image: url("../img/free-icon-dustbin-5617178.png");
   background-size: 100%;
- width: 20px;
+  width: 20px;
   height: 20px;
   border: none;
   background-color: white;
@@ -104,7 +88,7 @@ export default defineComponent({
   transition: opacity 0.5s;
 }
 
-.user:hover .deleteBtn{
+.user:hover .deleteBtn {
   opacity: 1;
   pointer-events: unset;
   transition: opacity 0.5s;
@@ -136,8 +120,13 @@ p {
   display: none;
   cursor: pointer;
   border: none;
-  background-color:  #ff8484;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff8484;
   border-radius: 10px;
+  font-size: 0.7em;
+  height: 30px;
+  width: 150px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s;
@@ -158,7 +147,7 @@ p {
   transition: opacity 0.5s;
 }
 
-.user:hover .editor{
+.user:hover .editor {
   opacity: 1;
   pointer-events: unset;
   transition: opacity 0.5s;
@@ -169,7 +158,7 @@ input {
   font-weight: initial;
   color: #2c3e50;
   background-color: white;
-  outline:none;
+  outline: none;
   border-radius: 10px;
 }
 
@@ -178,9 +167,13 @@ input {
 }
 
 .absolute {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  z-index: 9998;
+  top: 35%;
+  left: 30%;
+  height: 11em;
   width: 35em;
+  transition: all 0.3s ease;
 }
 
 @keyframes animShow {
