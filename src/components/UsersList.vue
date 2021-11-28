@@ -13,6 +13,8 @@
       :user="selectedUser"
       v-if="Object.keys(selectedUser).length > 0"
       @hide-user="hideUser"
+      @delete-user="deleteUser"
+      @edit-user="editUser"
     />
   </div>
 </template>
@@ -41,13 +43,15 @@ export default defineComponent({
     hideUser() {
       this.$emit("hide-user");
     },
+    editUser(userInfo: any) {
+      this.$emit("edit-user", userInfo);
+    },
   },
 });
 </script>
 
 <style>
 .users__list {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

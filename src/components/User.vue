@@ -66,12 +66,6 @@ export default defineComponent({
   animation: animShow 1s;
 }
 
-.user:hover .closeBtn {
-  opacity: 1;
-  pointer-events: unset;
-  transition: opacity 0.5s;
-}
-
 .deleteBtn {
   cursor: pointer;
   position: absolute;
@@ -99,81 +93,15 @@ export default defineComponent({
   width: 120px;
   border-radius: 50%;
 }
-.user__info {
-  display: none;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 1em;
-  font-size: 1.5em;
-}
-
-.info {
-  display: flex;
-  margin-bottom: 5px;
-}
 
 p {
   margin: 0;
-}
-
-.closeBtn {
-  display: none;
-  cursor: pointer;
-  border: none;
-  justify-content: center;
-  align-items: center;
-  background-color: #ff8484;
-  border-radius: 10px;
-  font-size: 0.7em;
-  height: 30px;
-  width: 150px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s;
-}
-
-.editor {
-  position: absolute;
-  top: 15%;
-  right: 10%;
-  cursor: pointer;
-  background-image: url("../img/icons8-редактировать.svg");
-  width: 25px;
-  height: 25px;
-  border: none;
-  background-color: white;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s;
 }
 
 .user:hover .editor {
   opacity: 1;
   pointer-events: unset;
   transition: opacity 0.5s;
-}
-input {
-  border: none;
-  font-size: 1em;
-  font-weight: initial;
-  color: #2c3e50;
-  background-color: white;
-  outline: none;
-  border-radius: 10px;
-}
-
-.email {
-  width: 300px;
-}
-
-.absolute {
-  position: fixed;
-  z-index: 9998;
-  top: 35%;
-  left: 30%;
-  height: 11em;
-  width: 35em;
-  transition: all 0.3s ease;
 }
 
 @keyframes animShow {

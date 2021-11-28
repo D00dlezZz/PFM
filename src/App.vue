@@ -7,6 +7,7 @@
       @delete-user="deleteUser"
       @select-user="selectUser"
       @hide-user="hideUser"
+      @edit-user="editUser"
       :selectedUser="selectedUser"
     />
   </div>
@@ -35,6 +36,7 @@ export default defineComponent({
     watch(
       () => users.value,
       (newUsers) => {
+        console.log("salam");
         localStorage.users = JSON.stringify(newUsers);
       }
     );
@@ -43,6 +45,7 @@ export default defineComponent({
       users.value = JSON.parse(localStorage.users).filter(
         (user: any) => user.id !== id
       );
+      selectedUser.value = new User();
     }
     function selectUser(id: number) {
       selectedUser.value = JSON.parse(localStorage.users).find(
@@ -53,12 +56,24 @@ export default defineComponent({
     function hideUser() {
       selectedUser.value = new User();
     }
+    function editUser(userInfo: any) {
+      let updatedUser: any = [];
+      JSON.parse(localStorage.users).forEach((user: any, index: number) => {
+        if (user.id === userInfo.id) {
+          updatedUser.push(userInfo);
+        } else {
+          updatedUser.push(user);
+        }
+      });
+      users.value = updatedUser;
+    }
     return {
       users,
       deleteUser,
       selectUser,
       selectedUser,
       hideUser,
+      editUser,
     };
   },
 });
@@ -67,6 +82,7 @@ export default defineComponent({
 <style>
 #app {
   box-sizing: border-box;
+  padding: 30px;
   font-family: Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -74,13 +90,7 @@ export default defineComponent({
   position: relative;
 }
 
-.overlay {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 2;
-  overflow: hidden;
+h1 {
+  text-align: center;
 }
 </style>
