@@ -92,5 +92,16 @@ export default defineComponent({
 
 h1 {
   text-align: center;
+
+  animation: slide 1s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 </style>
