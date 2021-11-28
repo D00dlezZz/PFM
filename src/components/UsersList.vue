@@ -29,8 +29,8 @@ export default defineComponent({
 
 <style scoped>
 .users__list {
-  display: grid;
-  grid-template-columns: 50% 50% ;
+  display: flex;
+  justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
 }

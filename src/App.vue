@@ -19,7 +19,6 @@ export default defineComponent({
   components: {
     UsersList,
   },
-
   async mounted() {
     await getUsers()
     .then((response: any) => {
@@ -32,12 +31,12 @@ export default defineComponent({
       return users;
     }
   },
-  methods: {
-    deleteUser(id: number) {
-      console.log(this.users)
-      this.users.filter((user: any) => user.id !== id);
-    }
-  }
+  // methods: {
+  //   deleteUser(id: number) {
+  //     console.log(this.users)
+  //     this.users = this.users.filter((user: any) => user.id !== id);
+  //   }
+  // }
 });
 </script>
 
@@ -50,4 +49,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
 </style>

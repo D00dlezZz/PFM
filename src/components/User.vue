@@ -39,13 +39,14 @@ export default defineComponent({
     },
     showInfo(event: any ) {
       event.target.closest(".user").querySelector(".user__info").style.display = "flex"
-      event.target.closest(".user__container").querySelector(".user").style.width = "35em"
+      event.target.closest(".user__container").querySelector(".user").classList.add("absolute")
       event.target.closest(".user").querySelector(".closeBtn").style.display = "flex"
       event.target.closest(".user").querySelector(".about").style.display = "none"
+
     },
     closeInfo(event: any ) {
       event.target.closest(".user").querySelector(".user__info").style.display = "none"
-      event.target.closest(".user__container").querySelector(".user").style.width = "8em"
+      event.target.closest(".user__container").querySelector(".user").classList.remove("absolute")
       event.target.closest(".user").querySelector(".closeBtn").style.display = "none"
       event.target.closest(".user").querySelector(".about").style.display = "flex"
     },
@@ -76,6 +77,7 @@ export default defineComponent({
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  background-color: white;
   border: none;
   animation: animShow 1s;
 }
@@ -173,6 +175,12 @@ input {
 
 .email {
   width: 300px;
+}
+
+.absolute {
+  position: absolute;
+  z-index: 1;
+  width: 35em;
 }
 
 @keyframes animShow {
